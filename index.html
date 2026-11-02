@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aura Agents — Mint (BSC)</title>
+<meta name="description" content="Aura Agents (AURA) — 8,000 pixel aura agents on BNB Smart Chain. First 2 per wallet free for Binance Agent ID holders, every extra in the same mint 0.0005 BNB (~$0.35), max 10 per wallet. Mainnet contract 0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1, verified on Sourcify and BscScan.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #050505; color: #f5f2ff; margin: 0; padding: 0; }
+  a { color: #c9a2ff; }
+  code { background: #1c1c22; padding: 2px 7px; border-radius: 6px; font-size: .92em; word-break: break-all; }
+
+  /* ---- top bar ---- */
+  .topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; background: rgba(5,5,5,.92); border-bottom: 1px solid #26262e; backdrop-filter: blur(6px); }
+  .topbar .logo { font-weight: 900; letter-spacing: .14em; font-size: 15px; }
+  .topbar .logo span { background: linear-gradient(90deg,#a855f7,#ec4899,#f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .nav { display: flex; gap: 4px; }
+  .nav a { color: #c9c2dd; text-decoration: none; font-size: 13px; font-weight: 700; padding: 7px 11px; border-radius: 999px; white-space: nowrap; }
+  .nav a:hover { color: #fff; background: #1c1c22; }
+  section { scroll-margin-top: 70px; }
+  @media (max-width: 880px) { .nav { display: none; } }
+  .live { display: inline-flex; align-items: center; gap: 7px; background: #062b16; border: 1px solid #22c55e; color: #4ade80; font-weight: 800; font-size: 12px; letter-spacing: .08em; padding: 6px 12px; border-radius: 999px; white-space: nowrap; }
+  .live i { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 10px #22c55e; animation: pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 18px 60px; }
+
+  /* ---- hero ---- */
+  .hero { text-align: center; padding: 56px 0 8px; }
+  .hero .kicker { font-weight: 800; letter-spacing: .28em; font-size: 13px; color: #c9a2ff; text-transform: uppercase; }
+  h1 { margin: 14px 0 10px; font-size: clamp(52px, 11vw, 110px); line-height: .92; font-weight: 900; letter-spacing: -.02em; text-transform: uppercase; }
+  h1 .grad { background: linear-gradient(90deg,#a855f7,#ec4899 45%,#f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p.lede { font-size: clamp(17px, 2.6vw, 22px); font-weight: 600; color: #d6d0e8; max-width: 640px; margin: 0 auto 26px; line-height: 1.45; }
+  .hero p.lede b { color: #fff; }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-block; background: linear-gradient(90deg,#7c3aed,#db2777); color: #fff; border: 0; border-radius: 999px; padding: 16px 30px; font-size: 17px; font-weight: 800; cursor: pointer; text-decoration: none; box-shadow: 0 0 28px rgba(168,85,247,.45); }
+  .btn:hover { filter: brightness(1.12); }
+  .btn.ghost { background: transparent; border: 2px solid #a855f7; color: #e9d5ff; box-shadow: none; }
+  .btn:disabled { background: #33333a; color: #8a8a95; cursor: not-allowed; box-shadow: none; }
+
+  /* ---- big stats ---- */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 34px 0 10px; }
+  .stat { background: linear-gradient(180deg,#141419,#0b0b0f); border: 1px solid #2c2c36; border-radius: 18px; padding: 20px 10px 16px; text-align: center; }
+  .stat b { display: block; font-size: clamp(26px, 5vw, 42px); font-weight: 900; line-height: 1; background: linear-gradient(90deg,#fff,#c9a2ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat span { display: block; margin-top: 8px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9d94b5; }
+  .stat.hot b { background: linear-gradient(90deg,#4ade80,#a3e635); -webkit-background-clip: text; background-clip: text; }
+  .chainline { text-align: center; color: #8f86a8; font-size: 13px; margin: 6px 0 0; }
+
+  /* ---- aura strip ---- */
+  .strip { display: flex; gap: 10px; overflow-x: auto; padding: 22px 2px 8px; scrollbar-width: thin; }
+  .strip figure { margin: 0; flex: 0 0 128px; text-align: center; }
+  .strip img { width: 128px; height: 128px; border-radius: 16px; image-rendering: pixelated; border: 2px solid #2c2c36; box-shadow: 0 0 18px rgba(168,85,247,.28); background: #111116; }
+  .strip figcaption { font-size: 12px; font-weight: 700; color: #c9c2dd; margin-top: 7px; }
+  .strip figcaption b { color: #fff; }
+
+  /* ---- sections ---- */
+  section { margin-top: 44px; }
+  h2 { font-size: clamp(28px, 5vw, 40px); font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; margin: 0 0 6px; line-height: 1.05; }
+  h2 .n { color: #a855f7; }
+  .sec-sub { color: #b3abc9; font-size: 16px; line-height: 1.55; margin: 0 0 18px; max-width: 720px; }
+  .card { background: #0e0e13; border: 1px solid #26262e; border-radius: 22px; padding: 26px 22px; }
+  .card + .card { margin-top: 14px; }
+
+  /* ---- price cards ---- */
+  .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 4px 0 18px; }
+  .price { background: #16161d; border: 2px solid #2c2c36; border-radius: 16px; padding: 18px 12px; text-align: center; }
+  .price.best { border-color: #a855f7; box-shadow: 0 0 24px rgba(168,85,247,.35); }
+  .price b { display: block; font-size: 30px; font-weight: 900; }
+  .price span { display: block; margin-top: 6px; font-size: 13px; font-weight: 700; color: #9d94b5; }
+  .price small { display: block; margin-top: 4px; font-size: 12px; color: #6f6884; }
+
+  /* ---- checker ---- */
+  input[type=text] { width: 100%; padding: 16px; border-radius: 14px; border: 2px solid #a855f7; background: #16161d; color: #fff; font-size: 16px; text-align: center; outline: none; }
+  input[type=text]:focus { box-shadow: 0 0 0 4px rgba(168,85,247,.3); }
+  #checkStatus, #status, #mintStatus, #copyStatus { margin-top: 14px; min-height: 20px; color: #cbbf9f; word-break: break-all; text-align: center; }
+  .result { background: #101014; border: 1px solid #3a2f4a; border-radius: 14px; padding: 16px; margin: 14px 0; text-align: left; font-size: 15px; line-height: 1.8; }
+  .result b { color: #c9a2ff; }
+  .result b.no { color: #ff9a9a; }
+
+  /* ---- aura grid ---- */
+  .auras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 12px 0; }
+  .auras figure { margin: 0; background: #101016; border: 1px solid #26262e; border-radius: 14px; padding: 10px; text-align: center; }
+  .auras img { width: 100%; border-radius: 10px; image-rendering: pixelated; }
+  .auras figcaption { font-size: 13px; font-weight: 700; color: #d6d0e8; margin-top: 8px; }
+  .auras figcaption span { display: block; font-size: 12px; font-weight: 500; color: #8f86a8; }
+
+  textarea { width: 100%; height: 380px; background: #0a0a0e; color: #e6dcc3; border: 2px solid #2c2c36; border-radius: 14px; padding: 14px; font-size: 13px; font-family: monospace; }
+  .note { background: #16161d; border-left: 4px solid #a855f7; border-radius: 10px; padding: 14px; margin: 12px 0; font-size: 14px; color: #b3abc9; text-align: left; line-height: 1.6; }
+  .note b { color: #fff; }
+  .warn { border-left-color: #f59e0b; }
+  details { text-align: left; }
+  details summary { cursor: pointer; font-size: 17px; font-weight: 800; padding: 8px 0; }
+  .footer { margin-top: 48px; border-top: 1px solid #26262e; padding-top: 22px; color: #8f86a8; font-size: 13px; line-height: 1.8; text-align: center; }
+  @media (max-width: 640px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .prices { grid-template-columns: 1fr; }
+    .auras { grid-template-columns: repeat(2, 1fr); }
+    .card { padding: 20px 16px; }
+    .topbar .contract { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">AURA<span>AGENTS</span></div>
+  <nav class="nav">
+    <a href="#check">Check Wallet</a>
+    <a href="#how">How It Works</a>
+    <a href="#auras">Auras</a>
+    <a href="#agent">Agent Mint</a>
+  </nav>
+  <div class="contract"><code>0xacc6…c7DB1</code></div>
+  <div class="live"><i></i>LIVE ON BSC MAINNET</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="kicker">8,000 pixel aura agents · BSC mainnet</div>
+    <h1>Your aura<br><span class="grad">is waiting.</span></h1>
+    <p class="lede">First <b>2 per wallet FREE</b> for Binance Agent ID holders. Every extra in the same mint is <b>0.0005 BNB (~$0.35)</b>. Max 10 per wallet. Agent ID required for every mint.</p>
+    <div class="cta-row">
+      <a class="btn" href="#check">Check my wallet</a>
+      <a class="btn ghost" href="#agent">Mint with my agent</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat hot"><b id="liveMinted">…</b><span>Minted live</span></div>
+      <div class="stat"><b>7,200</b><span>Free</span></div>
+      <div class="stat"><b>800</b><span>Paid</span></div>
+      <div class="stat"><b>$0.35</b><span>Per paid mint</span></div>
+    </div>
+    <p class="chainline">Live counts read from the mainnet contract. Contract <code>0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1</code> · Sourcify verified exact_match · BscScan verified Exact Match.</p>
+
+    <div class="strip" aria-label="The 16 auras">
+      <figure><img src="aura-01.png" alt="Ember aura"><figcaption><b>1 · Ember</b> determined</figcaption></figure>
+      <figure><img src="aura-02.png" alt="Tide aura"><figcaption><b>2 · Tide</b> calm</figcaption></figure>
+      <figure><img src="aura-03.png" alt="Bloom aura"><figcaption><b>3 · Bloom</b> joyful</figcaption></figure>
+      <figure><img src="aura-04.png" alt="Volt aura"><figcaption><b>4 · Volt</b> excited</figcaption></figure>
+      <figure><img src="aura-05.png" alt="Frost aura"><figcaption><b>5 · Frost</b> serene</figcaption></figure>
+      <figure><img src="aura-06.png" alt="Shadow aura"><figcaption><b>6 · Shadow</b> mysterious</figcaption></figure>
+      <figure><img src="aura-07.png" alt="Solar aura"><figcaption><b>7 · Solar</b> radiant</figcaption></figure>
+      <figure><img src="aura-08.png" alt="Moss aura"><figcaption><b>8 · Moss</b> grounded</figcaption></figure>
+      <figure><img src="aura-09.png" alt="Nova aura"><figcaption><b>9 · Nova</b> bold</figcaption></figure>
+      <figure><img src="aura-10.png" alt="Mist aura"><figcaption><b>10 · Mist</b> dreamy</figcaption></figure>
+      <figure><img src="aura-11.png" alt="Coral aura"><figcaption><b>11 · Coral</b> playful</figcaption></figure>
+      <figure><img src="aura-12.png" alt="Abyss aura"><figcaption><b>12 · Abyss</b> thoughtful</figcaption></figure>
+      <figure><img src="aura-13.png" alt="Honey aura"><figcaption><b>13 · Honey</b> warm</figcaption></figure>
+      <figure><img src="aura-14.png" alt="Jade aura"><figcaption><b>14 · Jade</b> balanced</figcaption></figure>
+      <figure><img src="aura-15.png" alt="Crimson aura"><figcaption><b>15 · Crimson</b> fierce</figcaption></figure>
+      <figure><img src="aura-16.png" alt="Lunar aura"><figcaption><b>16 · Lunar</b> lunar</figcaption></figure>
+    </div>
+  </div>
+
+  <!-- ============ CHECKER ============ -->
+  <section id="check">
+    <h2><span class="n">01 /</span> Check your wallet</h2>
+    <p class="sec-sub">No connection needed. Paste any wallet address — we only read the chain. Nothing is signed, nothing is connected. The Agent ID check reads the real Binance registry on BSC mainnet; the mint checks read the live mainnet contract.</p>
+    <div class="card" style="text-align:center">
+      <input type="text" id="addrInput" placeholder="0x… your wallet address" autocomplete="off" spellcheck="false">
+      <br><br><button class="btn" id="checkBtn">Check my wallet</button>
+      <div id="checkStatus">Paste an address above to check its Agent ID status.</div>
+      <div class="result" id="checkResult" style="display:none">
+        Wallet: <code id="rAddr">–</code><br>
+        Binance Agent ID (mainnet registry): <b id="rAgent">–</b><br>
+        Free mints left for this wallet: <b id="rFree">–</b><br>
+        AURA held: <b id="rBalance">–</b><br>
+        <span id="rVerdict"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how">
+    <h2><span class="n">02 /</span> How the mint works</h2>
+    <p class="sec-sub">One mint function, <code>mint(qty)</code>. No separate free or paid phase. The first 2 per wallet are free; every extra in the same transaction costs exactly 0.0005 BNB (~$0.35) each. Once the global 7,200 free are used, every further mint is paid (up to the 800 paid cap). Agent ID is required for every mint, free or paid. Only EOAs can mint — contracts calling through another contract are rejected.</p>
+    <div class="prices">
+      <div class="price best"><b>0 BNB</b><span>Mint 2 · fresh wallet</span><small>your 2 free</small></div>
+      <div class="price"><b>0.0005 BNB</b><span>Mint 3 · fresh wallet</span><small>2 free + 1 paid</small></div>
+      <div class="price"><b>0.004 BNB</b><span>Mint 10 · fresh wallet</span><small>2 free + 8 paid</small></div>
+    </div>
+    <div class="note"><b>Paid revenue split:</b> 30% of paid revenue actually received goes to a daily pot raffle and 20% to referral rewards, distributed off-chain from withdrawn BNB only. The owner keeps about 50% (max about $140 if all 800 paid sell). The contract does not run the raffle or pay referrers on-chain. No payout or raffle win is promised to anyone.</div>
+    <div class="note"><b>Roadmap — stages, not dates:</b><br>
+    Stage 1 — Contract built, local tests passed, scans clean, art and metadata ready (done).<br>
+    Stage 2 — Testnet deploy and live tests, verified on Sourcify and BscScan (done, 2026-11-02).<br>
+    Stage 3 — Mainnet deploy and verification (deployed 2026-11-02; Sourcify verified exact_match, BscScan verified Exact Match).<br>
+    Stage 4 — Launch: blended mint opens, 7,200 free + 800 paid (live now; baseURI / token images pending the owner's setBaseURI).</div>
+    <div class="note"><b>Points:</b> points are a score, not a token. They do not entitle anyone to tokens or payouts. No token is promised, no airdrop date is promised.</div>
+    <div class="note warn"><b>Honest notes:</b> the contract is NOT audited by a third party. It uses OpenZeppelin ERC721 + ERC721Royalty + Ownable + ReentrancyGuard. The owner can withdraw BNB and change metadata via setBaseURI, and can transfer or renounce ownership. The owner cannot change supply (8,000), free supply (7,200), paid supply (800), price (0.0005 BNB), max 10 per wallet, free 2 per wallet, or the Agent ID registry, and cannot mint extra Auras, pause, freeze, burn, or take holders' Auras. Royalties are 5% ERC-2981 to the owner, but some marketplaces ignore ERC-2981. No floor price, returns, or APY is promised.</div>
+  </section>
+
+  <!-- ============ THE 16 AURAS ============ -->
+  <section id="auras">
+    <h2><span class="n">03 /</span> The 16 auras</h2>
+    <p class="sec-sub">One of 16 pixel aura spirits, assigned by token number: token #N is variant (N − 1) mod 16. 500 tokens of each aura. Same art for every token of a variant — no rarity tiers, no reveal.</p>
+    <div class="auras">
+      <figure><img src="aura-01.png" alt="Ember aura"><figcaption>1 · Ember<span>determined</span></figcaption></figure>
+      <figure><img src="aura-02.png" alt="Tide aura"><figcaption>2 · Tide<span>calm</span></figcaption></figure>
+      <figure><img src="aura-03.png" alt="Bloom aura"><figcaption>3 · Bloom<span>joyful</span></figcaption></figure>
+      <figure><img src="aura-04.png" alt="Volt aura"><figcaption>4 · Volt<span>excited</span></figcaption></figure>
+      <figure><img src="aura-05.png" alt="Frost aura"><figcaption>5 · Frost<span>serene</span></figcaption></figure>
+      <figure><img src="aura-06.png" alt="Shadow aura"><figcaption>6 · Shadow<span>mysterious</span></figcaption></figure>
+      <figure><img src="aura-07.png" alt="Solar aura"><figcaption>7 · Solar<span>radiant</span></figcaption></figure>
+      <figure><img src="aura-08.png" alt="Moss aura"><figcaption>8 · Moss<span>grounded</span></figcaption></figure>
+      <figure><img src="aura-09.png" alt="Nova aura"><figcaption>9 · Nova<span>bold</span></figcaption></figure>
+      <figure><img src="aura-10.png" alt="Mist aura"><figcaption>10 · Mist<span>dreamy</span></figcaption></figure>
+      <figure><img src="aura-11.png" alt="Coral aura"><figcaption>11 · Coral<span>playful</span></figcaption></figure>
+      <figure><img src="aura-12.png" alt="Abyss aura"><figcaption>12 · Abyss<span>thoughtful</span></figcaption></figure>
+      <figure><img src="aura-13.png" alt="Honey aura"><figcaption>13 · Honey<span>warm</span></figcaption></figure>
+      <figure><img src="aura-14.png" alt="Jade aura"><figcaption>14 · Jade<span>balanced</span></figcaption></figure>
+      <figure><img src="aura-15.png" alt="Crimson aura"><figcaption>15 · Crimson<span>fierce</span></figcaption></figure>
+      <figure><img src="aura-16.png" alt="Lunar aura"><figcaption>16 · Lunar<span>lunar</span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ============ COPY-PASTE AGENT PROMPT ============ -->
+  <section id="agent">
+    <h2><span class="n">04 /</span> Mint with your own AI agent</h2>
+    <p class="sec-sub">Copy this prompt and paste it into your AI agent (Binance Agentic Wallet, Muse, etc.). It checks everything first, shows you a preview, and waits for your OK before minting. No wallet connection needed here. The MAINNET contract is live: 0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1 (chain 56), verified on Sourcify (exact_match) and BscScan (Exact Match). baseURI is not set yet (owner-only, pending the owner's signature), so token images appear once setBaseURI is done. Do NOT mint on the testnet contract (0x3F59f5c912d23BA588cA11F108Cbe2439342d260, chain 97) — it is a throwaway test contract.</p>
+    <div class="card" style="text-align:center">
+      <textarea id="agentPrompt" readonly></textarea><br><br>
+      <button class="btn" id="copyPrompt">📋 Copy mint prompt</button>
+      <a href="llms.txt" target="_blank" rel="noopener"><button type="button" class="btn ghost">View llms.txt</button></a>
+      <div id="copyStatus"></div>
+      <div class="note">Tip: if you checked an address above, the prompt is filled in with that address. Otherwise it says “my wallet” and your agent will use whichever wallet it controls.</div>
+    </div>
+  </section>
+
+  <!-- ============ OPTIONAL: mint in the browser ============ -->
+  <section>
+    <div class="card">
+      <details>
+        <summary>Prefer to mint here in the browser? (optional — use the agent prompt for now)</summary>
+        <p class="sec-sub">Browser minting is not built yet — the button below stays disabled on purpose. Use the copy-paste agent prompt above, or mint from your own wallet / agent with the mainnet contract 0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1.</p>
+        <button id="connect" disabled>Connect wallet (not built yet)</button><br>
+        <div id="mintStatus">Minting is live on the MAINNET contract. Do NOT mint on the testnet contract (0x3F59f5c912d23BA588cA11F108Cbe2439342d260, chain 97) — it is a throwaway test contract.</div>
+      </details>
+    </div>
+  </section>
+
+  <div class="footer">
+    Mainnet contract (LIVE, chain 56): <code>0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1</code>, deploy tx 0xdb9952622d783182c4084c71ee6a0bd73831f6877d0280c05c2ea18a82048f3a, gas 2,080,374, block 131279735. Deployer 0xE37436839f777db585D9B65153A5C8103c18AD44 (fresh throwaway, gas only); leftover 0.0008949313 BNB returned to the owner, tx 0xce5b167e823b73ce24abad727c1998461b659ad5795beb320288a97651be483e. Sourcify mainnet: verified exact_match, matchId 58105492 (2026-11-02T17:20:03Z). BscScan mainnet: VERIFIED Exact Match via the manual website form (2026-11-02 ~17:30 GMT). baseURI: NOT set yet — owner-only, the owner's signature is pending; tokenURI currently returns only the variant number until setBaseURI is done.<br>
+    Testnet contract (TESTNET ONLY, superseded — never mint on it): <code>0x3F59f5c912d23BA588cA11F108Cbe2439342d260</code> (chain 97).<br>
+    Agent ID registry (BSC mainnet, real): <code>0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F</code><br>
+    Art on IPFS: <a href="https://gateway.pinata.cloud/ipfs/bafybeibz3yd5p4euwfyjgpp423msz4dua4dlj5ycknrvy5t5fxsb44vqsa/aura-01.png" target="_blank" rel="noopener">bafybeibz3yd5p4euwfyjgpp423msz4dua4dlj5ycknrvy5t5fxsb44vqsa</a> (16 files, aura-01.png … aura-16.png)
+    <details style="text-align:left; margin-top:16px">
+      <summary>Technical details</summary>
+      <div class="note">
+      Contract: AuraAgents, symbol AURA, Solidity 0.8.26, Cancun, optimizer 200.<br>
+      Constants: MAX_SUPPLY 8000, FREE_SUPPLY 7200, PAID_SUPPLY 800, PAID_PRICE 0.0005 ether, MAX_PER_WALLET 10, FREE_PER_WALLET 2, royalties 5% ERC-2981.<br>
+      Price math: $0.35 / $700 per BNB = 0.0005 BNB exactly. Max paid revenue: 800 × $0.35 = $280.00 (0.4 BNB). Owner keeps ~50% (~$140), 30% daily pot raffle, 20% referral — off-chain, from revenue actually received.<br>
+      Local tests: 67/67 passed on Anvil (2026-11-02), test-results.json, allPassed true — free supply exhausted for real (7,200/7,200) and paid cap filled for real (800/800, totalSupply 8,000, contract held exactly 0.4 BNB, withdraw emptied it). tokenURI is per-variant: tokenURI(tokenId) = baseURI + variant, variant = (tokenId-1) % 16 + 1, proven for tokens 1, 16, 17, 7999, 8000. Deploy gas 2,080,374; mint(2) free 181,231; mint(3) blended 194,016; mint(10) 383,555; withdraw 32,137; setBaseURI 91,541.<br>
+      Slither 0.11.6: 69 results, 64 OpenZeppelin internals, 5 low/info in the contract, no real vulnerability. Aderyn 0.6.8: 2 high (1 documented false positive — reentrancy-state-change, state changes are before _safeMint, nonReentrant; 1 test-helper-only contract-locks-ether in MintCaller.sol, never deployed), 7 known/intentional lows.<br>
+      Gating: mint() and freeMint() BOTH check the Agent ID registry; mint() is EOA-only (msg.sender == tx.origin). Blended pricing via quoteMint(wallet, qty) → (freeQty, paidQty, value). No separate paid phase — paidOpen() is true from the start while paid supply remains.<br>
+      Metadata: 16 extensionless files (1..16, one per aura variant) on this site under /metadata/, images ipfs://bafybeibz3yd5p4euwfyjgpp423msz4dua4dlj5ycknrvy5t5fxsb44vqsa/aura-NN.png. tokenURI(tokenId) returns baseURI + variant number ((tokenId-1) % 16 + 1), so all 500 tokens of a variant share one metadata file — there are no per-token traits, so per-token files carried no information. The 8,000 per-token files were deleted 2026-11-02 on the user's "reduce anything that will increase the files".<br>
+      Testnet (2026-11-02): deployed 0x3F59f5c912d23BA588cA11F108Cbe2439342d260, tx 0x744e89eaa80fa6d331656ebadb6fcbef24528d797d5414ebd0db6991812218ca, gas 2,080,374. Live tests 30/30 passed (27 live + 3 proven via staticCall/raw eth_call after harness regex misses — see testnet-live-tests.json): mint(2) free tokens #1-2, mint(3) 0.0005, mint(10) 0.004, second mint all-paid, freeMint() wrapper, non-agent/EOA/qty/price/cap reverts, royaltyInfo 5%, tokenURI(1)="1" (16)="16" (17)="1" with baseURI empty. totalSupply 20, free 8/7,200, paid 12/800, contract holds 0.006 tBNB for the owner. Sourcify testnet verified exact_match matchId 58101142; BscScan testnet VERIFIED Exact Match via the manual website form (2026-11-02 ~16:46 GMT). setBaseURI on testnet was skipped by the user (deferred to mainnet).<br>
+      Mainnet (2026-11-02): deployed 0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1, tx 0xdb9952622d783182c4084c71ee6a0bd73831f6877d0280c05c2ea18a82048f3a, gas 2,080,374, block 131279735. Post-deploy checks 9/9 OK (owner = user wallet, registry = real registry, totalSupply 0, freeRemaining 7200, paidRemaining 800, freeOpen true, paidOpen true, royaltyInfo 5%). Sourcify mainnet verified exact_match matchId 58105492 (2026-11-02T17:20:03Z). BscScan mainnet VERIFIED Exact Match via the manual website form (2026-11-02 ~17:30 GMT). Mints started within minutes of deploy (radars find verified contracts fast) — totalSupply was already 105 by ~17:30 GMT. baseURI not set yet (owner-only, pending the owner's signature; held until the site is live, per the user 2026-11-02 ~17:26 GMT).<br>
+      Hosting: GitHub Pages (user uploading v5 himself). 16 metadata files + 18 site files = 34 files in the deploy package.
+      </div>
+    </details>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.17.0/dist/ethers.umd.min.js"></script>
+<script>
+// --- AURA AGENTS — LIVE ON BSC MAINNET (chain 56). ---
+// The checker reads the REAL Binance Agent ID registry on BSC mainnet
+// (chain 56) and the live mainnet contract below.
+const REGISTRY_ADDRESS = "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F";
+const CONTRACT_ADDRESS = "0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1";
+const CHAIN_ID = 56; // BSC mainnet
+const RPC_URL = "https://bsc-dataseed.binance.org/";
+const REGISTRY_ABI = ["function balanceOf(address) view returns (uint256)"];
+const CONTRACT_ABI = [
+  "function totalSupply() view returns (uint256)",
+  "function freeMinted(address) view returns (uint256)",
+  "function mintedCount(address) view returns (uint256)",
+  "function balanceOf(address) view returns (uint256)",
+  "function freeRemaining() view returns (uint256)",
+  "function paidRemaining() view returns (uint256)",
+  "function quoteMint(address,uint256) view returns (uint256,uint256,uint256)",
+];
+const $ = (id) => document.getElementById(id);
+const short = (a) => a ? a.slice(0, 6) + "…" + a.slice(-4) : "–";
+let checkedAddr = null;
+
+const rpc = new ethers.JsonRpcProvider(RPC_URL, CHAIN_ID);
+const readRegistry = new ethers.Contract(REGISTRY_ADDRESS, REGISTRY_ABI, rpc);
+const readContract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, rpc);
+
+function setStatus(el, html) { $(el).innerHTML = html; }
+
+// ---- Live minted count in the hero ----
+(async () => {
+  try {
+    const total = await readContract.totalSupply();
+    $("liveMinted").textContent = Number(total).toLocaleString() + " / 8,000";
+  } catch (e) { $("liveMinted").textContent = "8,000 total"; }
+})();
+
+// ---- The copy-paste agent prompt (filled with the checked address when known) ----
+function buildPrompt(addr) {
+  const who = addr ? addr : "my wallet";
+  const whoLine = addr
+    ? "Mint for wallet " + addr + " (check that this is the wallet your agent controls — if it controls a different wallet, mint for that one instead and check it first)."
+    : "Mint for my wallet (the wallet your agent controls).";
+  return "Mint Aura Agents (AURA) for me on BNB Smart Chain.\n"
+    + whoLine + "\n\n"
+    + "STATUS: LIVE ON BSC MAINNET (chain 56). Mainnet contract 0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1, deployed 2026-11-02. Sourcify verified exact_match (matchId 58105492). BscScan mainnet verified Exact Match (manual form, 2026-11-02 ~17:30 GMT). baseURI is not set yet (owner-only, pending the owner's signature), so token images appear once setBaseURI is done. Do NOT mint on the testnet contract 0x3F59f5c912d23BA588cA11F108Cbe2439342d260 (chain 97) — it is a throwaway test contract, never mint on it.\n\n"
+    + "Specs: Name: Aura Agents, symbol AURA. Total supply 8,000. Single blended mint(qty): first 2 per wallet FREE, every extra in the same mint 0.0005 BNB (~$0.35) each, max 10 per wallet total. Agent ID required for ALL mints, free and paid. EOA only (msg.sender == tx.origin) — a contract cannot mint for you.\n"
+    + "Agent ID registry (BSC mainnet, real): 0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F — check balanceOf(" + who + ") there; above 0 means it holds an Agent ID.\n\n"
+    + "CHECKS FIRST (read-only, via a public BSC RPC — do not skip these):\n"
+    + "- totalSupply(), freeMintedCount(), freeRemaining(), paidRemaining(), freeOpen(), paidOpen() on the deployed contract.\n"
+    + "- freeMinted(" + who + ") — how many of the 2 free mints this wallet already used (0, 1 or 2).\n"
+    + "- mintedCount(" + who + ") — total Auras this wallet already holds from minting (max 10).\n"
+    + "- quoteMint(" + who + ", qty) — returns (freeQty, paidQty, value): the exact BNB to attach.\n"
+    + "- registry balanceOf(" + who + ") — must be above 0, or the mint reverts with \"no Agent ID\".\n\n"
+    + "THEN MINT (the contract is deployed and verified on Sourcify and BscScan):\n"
+    + "- Call mint(qty) with value exactly quoteMint's value. Examples: fresh wallet mint(2) costs 0 BNB; mint(3) costs 0.0005 BNB; mint(10) costs 0.004 BNB. A wallet that already used its 2 free pays 0.0005 BNB per mint.\n"
+    + "- Never attach more or less than the quoted value — the contract requires exact payment and reverts on \"wrong price\".\n"
+    + "- Never mint more than 10 total per wallet (contract reverts on \"max 10 per wallet\").\n"
+    + "- freeMint() is a wrapper for mint(1) — same blended logic, not a separate free path.\n\n"
+    + "SAFETY: preview the contract call first and show me the parsed transaction, the exact value, and any risks. Wait for my explicit confirmation before executing. Never mint from a contract wallet — mint from an EOA or the call reverts with \"EOA only\".\n"
+    + "After minting, verify on-chain (totalSupply went up and ownerOf of the new tokens is my wallet) and show me the transaction hash with a BscScan link.";
+}
+function refreshPrompt() { $("agentPrompt").value = buildPrompt(checkedAddr); }
+refreshPrompt();
+
+$("copyPrompt").onclick = async () => {
+  try {
+    await navigator.clipboard.writeText($("agentPrompt").value);
+    $("copyStatus").textContent = "✅ Copied — paste it into your AI agent.";
+  } catch (e) {
+    $("agentPrompt").select();
+    $("copyStatus").textContent = "Copy didn't work automatically — the prompt is selected, press Ctrl+C / Cmd+C.";
+  }
+};
+
+// ---- Step 1: paste-address checker (no wallet, read-only) ----
+$("checkBtn").onclick = async () => {
+  const raw = $("addrInput").value.trim();
+  if (!ethers.isAddress(raw)) {
+    setStatus("checkStatus", "That doesn't look like a wallet address. It should start with 0x and be 42 characters long.");
+    $("checkResult").style.display = "none";
+    return;
+  }
+  const addr = ethers.getAddress(raw);
+  checkedAddr = addr;
+  refreshPrompt();
+  setStatus("checkStatus", "Checking " + short(addr) + " on BSC mainnet…");
+  try {
+    const [agentBal, freeUsed, minted, held, freeLeft, total] = await Promise.all([
+      readRegistry.balanceOf(addr),
+      readContract.freeMinted(addr),
+      readContract.mintedCount(addr),
+      readContract.balanceOf(addr),
+      readContract.freeRemaining(),
+      readContract.totalSupply(),
+    ]);
+    const hasAgent = agentBal > 0n;
+    const freeLeftWallet = 2n - freeUsed;
+    $("rAddr").textContent = addr;
+    $("rAgent").textContent = hasAgent ? "Yes ✓" : "No ✗";
+    $("rAgent").className = hasAgent ? "" : "no";
+    $("rFree").textContent = freeLeftWallet.toString() + " free left (used " + freeUsed.toString() + " of 2); " + freeLeft.toString() + " free left globally, total minted " + total.toString() + " / 8,000";
+    $("rBalance").textContent = held.toString() + " AURA (minted " + minted.toString() + " of max 10)";
+    $("checkResult").style.display = "block";
+    let verdict;
+    if (!hasAgent) verdict = "❌ This wallet has no Agent ID, so it cannot mint Aura Agents at all — Agent ID is required for every mint, free and paid.";
+    else if (minted >= 10n) verdict = "✅ This wallet holds a Binance Agent ID, but it already minted 10 Auras — the per-wallet cap is reached, it cannot mint more.";
+    else if (freeLeftWallet > 0n) verdict = "✅ This wallet holds a Binance Agent ID and has " + freeLeftWallet.toString() + " free mint(s) left — mint(" + freeLeftWallet.toString() + ") costs 0 BNB, any extra in the same mint costs 0.0005 BNB each, max 10 total per wallet.";
+    else verdict = "✅ This wallet holds a Binance Agent ID and already used its 2 free mints — further mints cost 0.0005 BNB each, max 10 total per wallet.";
+    $("rVerdict").textContent = verdict;
+    setStatus("checkStatus", "Checked on-chain (mainnet registry + mainnet contract). The prompt below now uses this address.");
+  } catch (e) {
+    setStatus("checkStatus", "Check failed — the BSC RPC is busy. Try again in a few seconds.");
+  }
+};
+$("addrInput").addEventListener("keydown", (e) => { if (e.key === "Enter") $("checkBtn").click(); });
+</script>
+</body>
+</html>

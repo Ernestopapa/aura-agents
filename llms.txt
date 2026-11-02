@@ -1,0 +1,84 @@
+# Aura Agents (AURA) — instructions for AI agents
+
+> STATUS: LIVE ON BSC MAINNET (chain 56). Mainnet contract
+> 0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1, deployed 2026-11-02,
+> deploy tx 0xdb9952622d783182c4084c71ee6a0bd73831f6877d0280c05c2ea18a82048f3a,
+> gas 2,080,374, block 131279735. Sourcify verified exact_match
+> (matchId 58105492). BscScan mainnet VERIFIED Exact Match via the
+> manual website form (2026-11-02 ~17:30 GMT). baseURI is NOT set yet (owner-only, the owner's signature
+> is pending) — token images appear once setBaseURI is done. Do NOT
+> mint on the testnet contract
+> 0x3F59f5c912d23BA588cA11F108Cbe2439342d260 (chain 97) — throwaway test
+> contract, superseded.
+
+## Project
+
+- Name: Aura Agents, symbol AURA, ERC-721 (transferable, NOT soulbound).
+- Mainnet contract: 0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1
+  (chain 56, BSC mainnet). BscScan: https://bscscan.com/address/0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1
+  Sourcify: https://sourcify.dev/server/v2/contract/56/0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1
+  (verified exact_match, matchId 58105492).
+- Chain: BNB Smart Chain, chainId 56.
+- Total supply: 8,000. Free supply: 7,200. Paid supply: 800.
+- Single blended mint(qty): first 2 per wallet FREE, every extra in the
+  same mint 0.0005 BNB (~$0.35 at $700/BNB) each. Max 10 per wallet total.
+- Agent ID required for ALL mints (free and paid). Registry (real, BSC
+  mainnet): 0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F — balanceOf > 0.
+- EOA only: msg.sender == tx.origin. A contract cannot mint.
+- Paid price: 0.0005 BNB exactly. Max paid revenue: 800 x $0.35 = $280
+  (0.4 BNB). 30% of paid revenue received goes to a daily pot raffle
+  and 20% to referral rewards, distributed OFF-CHAIN from withdrawn BNB
+  only; no payout or win is promised. Owner keeps ~50% (~$140 max).
+- Royalties: 5% ERC-2981 to the owner. Some marketplaces ignore ERC-2981.
+- Art: 16 pixel aura variants, 500 tokens each. Token #N is variant
+  (N - 1) mod 16. Images on IPFS:
+  ipfs://bafybeibz3yd5p4euwfyjgpp423msz4dua4dlj5ycknrvy5t5fxsb44vqsa/aura-NN.png
+  (NN = 01..16). Metadata: /metadata/<variant> (1..16, one file per aura
+  variant) on this site (extensionless JSON). tokenURI(tokenId) =
+  baseURI + variant, variant = (tokenId - 1) mod 16 + 1, so all 500
+  tokens of a variant share one metadata file.
+- Contract: NOT audited by a third party. Built on OpenZeppelin ERC721 +
+  ERC721Royalty + Ownable + ReentrancyGuard, Solidity 0.8.26, Cancun,
+  optimizer 200.
+- Owner (0x75d251Ba39dED2E456d9f6DD776f77d422864403) CAN withdraw all BNB,
+  change metadata via setBaseURI(), transfer/renounce ownership. Owner
+  CANNOT change supply, free supply, paid supply, price, max 10/wallet,
+  free 2/wallet, or the registry, and cannot mint extra, pause, freeze,
+  burn, or take holders' Auras.
+- No floor price, returns, APY, dated token/airdrop, game, or merch is
+  promised. Points are a score, not a token; no token/payout entitlement.
+
+## Functions
+
+- mint(uint256 qty) payable — blended mint. Exact value required:
+  quoteMint(wallet, qty) returns (freeQty, paidQty, value).
+  Examples: fresh wallet mint(2) = 0 BNB; mint(3) = 0.0005 BNB;
+  mint(10) = 0.004 BNB. Wallet with 2 free used: 0.0005 BNB per mint.
+- freeMint() payable — wrapper for mint(1), same blended logic.
+  NOT a separate free path: after the 2 free are used it costs 0.0005 BNB.
+- Views: totalSupply(), freeMintedCount(), freeRemaining(),
+  paidRemaining(), freeOpen(), paidOpen(), freeMinted(address),
+  mintedCount(address), quoteMint(address, uint256), royaltyInfo(uint256,uint256).
+- paidOpen() is true from the start while paid supply remains — there is
+  NO separate paid phase.
+
+## Mint procedure for an agent
+
+1. Read totalSupply(), freeRemaining(), paidRemaining(), freeOpen(),
+   paidOpen() on the mainnet contract.
+2. Read freeMinted(wallet), mintedCount(wallet), and registry
+   balanceOf(wallet) — must be above 0.
+3. Call quoteMint(wallet, qty) and attach EXACTLY that value.
+   Wrong value reverts ("wrong price"). Qty above the wallet's remaining
+   allowance (10 - mintedCount) reverts ("max 10 per wallet").
+4. Preview the call, show the parsed transaction, exact value and risks,
+   and wait for the user's explicit confirmation before executing.
+5. After minting, verify on-chain and show the tx hash + BscScan link.
+
+## Do not
+
+- Do not mint on the testnet contract (0x3F59f5c912d23BA588cA11F108Cbe2439342d260,
+  chain 97) — throwaway test contract, superseded.
+- Do not mint from a contract wallet (reverts "EOA only").
+- Do not promise floor price, returns, APY, a token/airdrop, a game,
+  merch, or any raffle/referral payout.

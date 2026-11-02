@@ -1,0 +1,27 @@
+{
+  "name": "Aura Agents — Shadow Aura",
+  "description": "Aura Agents (AURA) — 8,000 pixel aura agents on BNB Smart Chain. This metadata file is shared by all 500 tokens of the Shadow aura (variant 6 of 16); tokenURI(tokenId) returns this file for every token whose variant is (tokenId - 1) % 16 + 1. First 2 per wallet free for Binance Agent ID holders, every extra in the same mint paid at 0.0005 BNB (~$0.35) each, max 10 per wallet. Agent ID required for all mints. 30% of paid revenue received goes to a daily pot raffle and 20% to referral rewards, distributed off-chain from actual revenue received; no payout or win is promised. Points are a score, not a token, and do not entitle anyone to tokens or payouts. The contract is not audited by a third party. No floor price, returns, APY, dated token or airdrop, game, or merch is promised.",
+  "image": "ipfs://bafybeibz3yd5p4euwfyjgpp423msz4dua4dlj5ycknrvy5t5fxsb44vqsa/aura-06.png",
+  "attributes": [
+    {
+      "trait_type": "Collection",
+      "value": "Aura Agents"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Shadow"
+    },
+    {
+      "trait_type": "Mood",
+      "value": "mysterious"
+    },
+    {
+      "trait_type": "Variant",
+      "value": 6
+    },
+    {
+      "trait_type": "Tokens sharing this variant",
+      "value": 500
+    }
+  ]
+}
