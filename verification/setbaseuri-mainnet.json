@@ -1,0 +1,12 @@
+{
+  "contract": "0xacc6e2F1aaE42B2E5FF2758Ff078E4B1bfAc7DB1",
+  "chainId": 56,
+  "baseURI": "https://aura-agents.pages.dev/metadata/",
+  "from": "0x75d251Ba39dED2E456d9f6DD776f77d422864403",
+  "previewRequestId": "38682b93d05445feb15778db7c873215",
+  "preview": {"success": true, "risks": [], "authorityChanges": [], "requireConfirmation": false, "simulationCode": "000000000"},
+  "execute": {"success": true, "orderId": "26110200002015839100", "status": "BROADCASTED", "txHash": "0x319dc41d40967fe5e8f91986b2d77a59990d9630d75a029982939c7fa98a5532"},
+  "receipt": {"status": "0x1", "blockNumber": "0x7d35367", "gasUsed": "0x165dd", "from": "0x75d251ba39ded2e456d9f6dd776f77d422864403"},
+  "tokenURI_1": "https://aura-agents.pages.dev/metadata/1",
+  "verifiedAt": "2026-11-02T18:36Z"
+}

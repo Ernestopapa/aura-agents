@@ -1,0 +1,397 @@
+{
+  "network": "anvil-local (dry run)",
+  "startedAt": "2026-11-02T16:54:29.481Z",
+  "tests": [
+    {
+      "name": "mock registry deploys",
+      "ok": true,
+      "detail": "gas 308419"
+    },
+    {
+      "name": "AuraAgents deploys",
+      "ok": true,
+      "detail": "gas 2080374 (local addr 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512)"
+    },
+    {
+      "name": "name/symbol",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "constants",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "totalSupply starts 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "freeRemaining 7200 / paidRemaining 800 at start",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "freeOpen true at start",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "paidOpen true at start (blended: no separate paid phase)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "owner is deployer",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "registry is mock",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "quoteMint fresh wallet mint(3) = 2 free + 1 paid, 0.0005",
+      "ok": true,
+      "detail": "free 2 paid 1 value 0.0005"
+    },
+    {
+      "name": "quoteMint fresh wallet mint(10) = 2 free + 8 paid, 0.004",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "plain wallet has no Agent ID",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "non-agent mint(1) reverts",
+      "ok": true,
+      "detail": "execution reverted: \"no Agent ID\""
+    },
+    {
+      "name": "non-agent mint(3) paid reverts",
+      "ok": true,
+      "detail": "execution reverted: \"no Agent ID\""
+    },
+    {
+      "name": "contract caller mint reverts (EOA only)",
+      "ok": true,
+      "detail": "execution reverted: \"EOA only\""
+    },
+    {
+      "name": "qty 0 reverts",
+      "ok": true,
+      "detail": "execution reverted: \"qty 1..10\""
+    },
+    {
+      "name": "qty 11 reverts",
+      "ok": true,
+      "detail": "execution reverted: \"qty 1..10\""
+    },
+    {
+      "name": "agent mint(2) free succeeds, tokens #1-2",
+      "ok": true,
+      "detail": "gas 181231"
+    },
+    {
+      "name": "freeMinted(agent) = 2 after mint(2)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mintedCount(agent) = 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "freeMintedCount = 2",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "agent 2nd mint(3) all-paid 0.0015 succeeds",
+      "ok": true,
+      "detail": "gas 154196"
+    },
+    {
+      "name": "paidMinted = 3 after 2nd mint",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "wrong-price mint reverts",
+      "ok": true,
+      "detail": "execution reverted: \"wrong price\""
+    },
+    {
+      "name": "free-value mint after free used reverts",
+      "ok": true,
+      "detail": "execution reverted: \"wrong price\""
+    },
+    {
+      "name": "fresh wallet mint(3) blended 0.0005 succeeds",
+      "ok": true,
+      "detail": "gas 194016"
+    },
+    {
+      "name": "paidMinted = 4 after blended mint(3)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "fresh wallet mint(10) = 2 free + 8 paid, 0.004 succeeds",
+      "ok": true,
+      "detail": "gas 383555"
+    },
+    {
+      "name": "paidMinted = 12 after mint(10)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "freeMintedCount = 6 after A+B+C",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mint past 10/wallet reverts",
+      "ok": true,
+      "detail": "execution reverted: \"max 10 per wallet\""
+    },
+    {
+      "name": "mint 6 when holding 5 reverts (cap 10)",
+      "ok": true,
+      "detail": "execution reverted: \"max 10 per wallet\""
+    },
+    {
+      "name": "agent mint(5) to exactly 10 succeeds",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "paidMinted = 17",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "freeMint() #1 free succeeds",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "freeMint() #2 free succeeds",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "freeMint() #3 with value 0 reverts (free used)",
+      "ok": true,
+      "detail": "transaction execution reverted"
+    },
+    {
+      "name": "freeMint() #3 paid 0.0005 succeeds (wrapper = mint(1))",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "non-agent freeMint() reverts",
+      "ok": true,
+      "detail": "execution reverted: \"no Agent ID\""
+    },
+    {
+      "name": "royaltyInfo 5% to owner",
+      "ok": true,
+      "detail": "receiver 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, amount 0.05 BNB on 1 BNB sale"
+    },
+    {
+      "name": "supportsInterface ERC2981",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "non-owner setBaseURI reverts",
+      "ok": true,
+      "detail": "execution reverted (unknown custom error)"
+    },
+    {
+      "name": "owner setBaseURI succeeds",
+      "ok": true,
+      "detail": "gas 91541"
+    },
+    {
+      "name": "tokenURI(1) = baseURI + variant 1",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "tokenURI(16) = baseURI + variant 16",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "tokenURI(17) = baseURI + variant 1 (wraps)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "tokenURI(27) reverts (not minted yet)",
+      "ok": true,
+      "detail": "execution reverted (unknown custom error)"
+    },
+    {
+      "name": "free supply exhausted (7200/7200)",
+      "ok": true,
+      "detail": "took 742s"
+    },
+    {
+      "name": "freeOpen false after exhaustion",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "freeRemaining 0 after exhaustion",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "paidOpen still true after free exhaustion",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mint(1) value 0 after free exhaustion reverts",
+      "ok": true,
+      "detail": "execution reverted: \"wrong price\""
+    },
+    {
+      "name": "quoteMint after free exhaustion = 0 free + 2 paid",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "totalSupply reaches cap 8000",
+      "ok": true,
+      "detail": "in 24s"
+    },
+    {
+      "name": "paidMinted = 800 at cap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "paidRemaining 0 at cap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "paidOpen false at cap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "freeMintedCount still 7200 at cap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "tokenURI(8000) = baseURI + variant 16",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "tokenURI(7999) = baseURI + variant 15",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "tokenURI(8001) reverts (above cap)",
+      "ok": true,
+      "detail": "execution reverted (unknown custom error)"
+    },
+    {
+      "name": "mint past cap 8000 reverts",
+      "ok": true,
+      "detail": "execution reverted: \"exceeds max supply\""
+    },
+    {
+      "name": "contract holds paid BNB 0.4",
+      "ok": true,
+      "detail": "0.4 BNB"
+    },
+    {
+      "name": "withdraw tx succeeds",
+      "ok": true,
+      "detail": "gas 32137"
+    },
+    {
+      "name": "owner withdraw empties contract",
+      "ok": true,
+      "detail": "0.0 BNB left"
+    },
+    {
+      "name": "non-owner withdraw reverts",
+      "ok": true,
+      "detail": "execution reverted (unknown custom error)"
+    }
+  ],
+  "deployment": {
+    "mockAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "mockDeployGas": "308419",
+    "auraAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+    "auraDeployGas": "2080374"
+  },
+  "mint2Free": {
+    "tx": "0xed23ee84ecbeb42bf5f260b563bd118d00376c3e96295be3e4e8612a8afa9f5f",
+    "gas": "181231"
+  },
+  "mint3Blended": {
+    "tx": "0x407adeaf60cc47ac6d03d585b5da218eb20d44f173f807fc9bf0c485cf9c5a32",
+    "gas": "194016"
+  },
+  "mint10": {
+    "tx": "0x21f4b43e8ac5acd98fbb1ee11d8340b02de5a54090298c0e5a9ac13e66ff49f9",
+    "gas": "383555"
+  },
+  "royalty": {
+    "receiver": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "amountWei": "50000000000000000"
+  },
+  "setBaseURI": {
+    "tx": "0x05951e32a1646c977bd61e7a68ff29ff332bd40b340208df740b76679380e9a5",
+    "gas": "91541"
+  },
+  "withdraw": {
+    "tx": "0xe2797532ab8980ae54dbdd73faba267b31fc01ec85d09eae8c2d85bb550e69a5",
+    "gas": "32137",
+    "balanceAfter": "0"
+  },
+  "mainnetCostEstimate": {
+    "gasPriceAssumption": "0.05 gwei",
+    "bnbPriceAssumptionUsd": 700,
+    "auraDeployGas": "2080374",
+    "auraDeployBnb": "0.0001040187",
+    "auraDeployUsd": "0.0728",
+    "mint2FreeGas": "181231",
+    "mint2FreeBnb": "0.00000906155",
+    "mint2FreeUsd": "0.0063",
+    "mint3BlendedGas": "194016",
+    "mint3BlendedBnb": "0.0000097008",
+    "mint3BlendedUsd": "0.0068",
+    "mint10Gas": "383555",
+    "mint10Bnb": "0.00001917775",
+    "mint10Usd": "0.0134",
+    "withdrawGas": "32137",
+    "withdrawBnb": "0.00000160685",
+    "withdrawUsd": "0.0011",
+    "setBaseURIGas": "91541",
+    "setBaseURIBnb": "0.00000457705",
+    "setBaseURIUsd": "0.0032",
+    "note": "Mock is local-only; mainnet uses the real registry, so mainnet deployment = AuraAgents deploy only (+ setBaseURI tx)."
+  },
+  "finishedAt": "2026-11-02T17:07:30.105Z",
+  "allPassed": true
+}

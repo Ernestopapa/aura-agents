@@ -1,0 +1,21 @@
+{
+  "address": "0x3F59f5c912d23BA588cA11F108Cbe2439342d260",
+  "chainId": 97,
+  "getsourcecode_before": {
+    "status": "0",
+    "message": "NOTOK",
+    "result": "Invalid API Key (#err2)"
+  },
+  "sourcify_forwarded_guid": "",
+  "sourcify_forwarded_status": {
+    "status": "0",
+    "message": "NOTOK",
+    "result": "Invalid API Key (#err2)"
+  },
+  "submit": {
+    "status": "0",
+    "message": "NOTOK",
+    "result": "Invalid API Key (#err2)"
+  },
+  "verified": false
+}

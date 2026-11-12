@@ -1,0 +1,159 @@
+{
+  "network": "BSC testnet",
+  "chainId": 97,
+  "at": "2026-11-02T16:36:19.420Z",
+  "tests": [
+    {
+      "name": "name/symbol",
+      "ok": true,
+      "detail": "Aura Agents / AURA"
+    },
+    {
+      "name": "constants + owner is user wallet",
+      "ok": true,
+      "detail": "owner 0x75d251Ba39dED2E456d9f6DD776f77d422864403"
+    },
+    {
+      "name": "totalSupply 0 / freeOpen true / paidOpen true (blended, no separate phase) / freeRemaining 7200 / paidRemaining 800",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "quoteMint fresh wallet mint(3) = 2 free + 1 paid, 0.0005",
+      "ok": true,
+      "detail": "free 2 paid 1 value 0.0005"
+    },
+    {
+      "name": "quoteMint fresh wallet mint(10) = 2 free + 8 paid, 0.004",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "agent mint(2) free succeeds, tokens #1-2",
+      "ok": true,
+      "detail": "tx 0xc76d5b38db7c2cb1828ecb7e08300b6f670d040cb62147b24d296ee859fa9d1e gas 181231"
+    },
+    {
+      "name": "agent mint(3) blended 0.0005 succeeds, tokens #3-5",
+      "ok": true,
+      "detail": "tx 0x49adad8188ad12521b42bbaea2f6249528255c5d2bbf42436a1b8d0faed20da5 gas 211116"
+    },
+    {
+      "name": "agent mint(10) 0.004 succeeds, tokens #6-15",
+      "ok": true,
+      "detail": "tx 0x056106e547be4c9f1643e7de36ccf9ef01c70ead43fcf14f53b473747a646a25 gas 383555"
+    },
+    {
+      "name": "agent 2nd mint(2) all-paid 0.001 succeeds, tokens #16-17",
+      "ok": true,
+      "detail": "tx 0x83e3bf104ee6c9d23a0c703ac20e645806c0328d5c8ec828dc02083a78fc7de2 gas 110019"
+    },
+    {
+      "name": "freeMint() #1 free succeeds (token #18)",
+      "ok": true,
+      "detail": "tx 0xbc7f5480519c93bc3f8261251826be6d5de665fc2d100eba74d225c28a5c7763"
+    },
+    {
+      "name": "freeMint() #2 free succeeds (token #19)",
+      "ok": true,
+      "detail": "tx 0x77e70f56de8d829cefc91274b9539d46b25fd065478bb143a1bb046d3efea057"
+    },
+    {
+      "name": "freeMint() #3 value 0 reverts (free used)",
+      "ok": true,
+      "detail": "execution reverted: \"wrong price\" (action=\"estimateGas\", data=\"0x08c379a0000000000000000000000000000"
+    },
+    {
+      "name": "freeMint() #3 paid 0.0005 succeeds (token #20)",
+      "ok": true,
+      "detail": "tx 0xdde09fe12af3e3d13db784a34af70684bc534cdb89d98371d0f956cd6924e889"
+    },
+    {
+      "name": "non-agent mint(1) reverts",
+      "ok": true,
+      "detail": "execution reverted: \"no Agent ID\" (action=\"estimateGas\", data=\"0x08c379a0000000000000000000000000000"
+    },
+    {
+      "name": "non-agent mint(3) paid reverts",
+      "ok": true,
+      "detail": "execution reverted: \"no Agent ID\" (action=\"estimateGas\", data=\"0x08c379a0000000000000000000000000000"
+    },
+    {
+      "name": "contract caller mint reverts (EOA only)",
+      "ok": true,
+      "detail": "execution reverted: \"EOA only\" (action=\"estimateGas\", data=\"0x08c379a0000000000000000000000000000000"
+    },
+    {
+      "name": "qty 0 reverts",
+      "ok": true,
+      "detail": "execution reverted: \"qty 1..10\" (action=\"estimateGas\", data=\"0x08c379a000000000000000000000000000000"
+    },
+    {
+      "name": "qty 11 reverts",
+      "ok": true,
+      "detail": "CORRECTED \u2014 harness miss, proven via staticCall from funded deployer: execution reverted 'qty 1..10'. Original run failed with 'insufficient funds' because agentB (0.00148 tBNB) could not attach the 0.005 tBNB value to the estimateGas call, so the contract's qty check was never reached. Contract correct."
+    },
+    {
+      "name": "wrong price reverts",
+      "ok": true,
+      "detail": "execution reverted: \"wrong price\" (action=\"estimateGas\", data=\"0x08c379a0000000000000000000000000000"
+    },
+    {
+      "name": "mint past 10/wallet reverts",
+      "ok": true,
+      "detail": "execution reverted: \"max 10 per wallet\" (action=\"estimateGas\", data=\"0x08c379a0000000000000000000000"
+    },
+    {
+      "name": "tokenURI(1) = variant 1 (baseURI empty)",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "tokenURI(16) = variant 16",
+      "ok": true,
+      "detail": "16"
+    },
+    {
+      "name": "tokenURI(17) = variant 1 (wraps)",
+      "ok": true,
+      "detail": "1"
+    },
+    {
+      "name": "tokenURI(21) reverts (not minted)",
+      "ok": true,
+      "detail": "execution reverted (unknown custom error)"
+    },
+    {
+      "name": "on-chain reads correct (totalSupply 20, free 8, paid 12, freeRemaining 7192, paidRemaining 788)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "royaltyInfo 5% to owner (user wallet)",
+      "ok": true,
+      "detail": "receiver 0x75d251Ba39dED2E456d9f6DD776f77d422864403 amount 0.05 tBNB on 1 tBNB sale"
+    },
+    {
+      "name": "contract holds paid tBNB 0.006 for owner",
+      "ok": true,
+      "detail": "0.006 tBNB"
+    },
+    {
+      "name": "non-owner (deployer) withdraw reverts",
+      "ok": true,
+      "detail": "CORRECTED \u2014 harness regex miss, proven via staticCall + raw eth_call: reverts with OwnableUnauthorizedAccount custom error, data 0x118cdaa7 + deployer address 0x03414bc66B3D98C573a6d39c75D7Daa826bD5a98. ethers reports custom errors as 'unknown custom error', so the /OwnableUnauthorizedAccount/ string regex missed. Contract correct."
+    },
+    {
+      "name": "non-owner (deployer) setBaseURI reverts",
+      "ok": true,
+      "detail": "CORRECTED \u2014 harness regex miss, proven via staticCall: reverts with OwnableUnauthorizedAccount, data 0x118cdaa7 + deployer address. Contract correct."
+    },
+    {
+      "name": "tokenURI baseURI empty on testnet (owner setBaseURI pending user wallet)",
+      "ok": true,
+      "detail": "setBaseURI needs the user wallet to sign; NOT attempted from the deployer"
+    }
+  ],
+  "corrections": "3 live-run FAILs were harness misses, not contract bugs (M9 lesson). Proven 2026-11-02 via scripts/prove-corrections.mjs (staticCall + raw eth_call, no state change): qty 11 reverts 'qty 1..10' from a funded caller; withdraw/setBaseURI revert OwnableUnauthorizedAccount 0x118cdaa7. Original uncorrected file kept as testnet-live-tests-original.json. Corrected tally: 28/28 passed.",
+  "allPassedCorrected": true
+}

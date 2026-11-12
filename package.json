@@ -1,0 +1,17 @@
+{
+  "name": "aura-agents",
+  "version": "1.0.0",
+  "description": "Aura Agents — Binance Agent ID NFT mint: 8,000 total, first 2 per wallet free, every extra in the same tx 0.0005 BNB (~$0.35), max 10/wallet, Agent ID required for all mints.",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "compile": "node scripts/compile.mjs",
+    "test:local": "node scripts/local-test.mjs",
+    "metadata": "node scripts/generate-metadata.mjs"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.6.1",
+    "ethers": "^6.17.0",
+    "solc": "0.8.26"
+  }
+}
